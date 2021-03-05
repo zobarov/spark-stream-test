@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Install SBT') {
             steps {
-              sh 'apt-get install sbt'
+              sh 'sudo apt-get install sbt'
             }
         }
         stage('Build') {
