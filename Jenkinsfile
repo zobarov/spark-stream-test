@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Install SBT') {
             steps {
-              git credentialsId: "${github_creds}", url: "${github_repo}"
+              sh 'apt-get install sbt'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'sbt assemble .'
             }
         }
     }
