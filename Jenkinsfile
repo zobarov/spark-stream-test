@@ -13,20 +13,11 @@ pipeline {
                 sh 'sbt test'
             }
         }
-        stage("build & SonarQube analysis") {
-            agent any
-            steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    sh 'mvn clean package sonar:sonar'
-                }
-            }
-        }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
+        stage('Static Code Analysis') {
+          def scannerHome = tool 'SonarQube Scanner';
+          withSonarQubeEnv('SonarQube Server') {
+              sh "${scannerHome}/bin/sonar-scanner"
+          }
         }
     }
 }
