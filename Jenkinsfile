@@ -15,15 +15,7 @@ pipeline {
                 sh 'sbt test'
             }
         }
-        stage('SonarScan on server') {
-            steps {
-            sh 'sonar-scanner \
-                  -Dsonar.projectKey=Scala_Orchestration \
-                  -Dsonar.sources=. \
-                  -Dsonar.host.url=http://172.21.38.24:9000 \
-                  -Dsonar.login=0362fd1cf35fcc9d241ebeca64e0b3dc7e7e918c'
-            }
-        }
+
 
         stage('Static Code Analysis') {
             steps {
