@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    def scannerHome = tool 'SonarQube Scanner';
 
     stages {
         stage('Package the App') {
@@ -15,7 +16,7 @@ pipeline {
         }
         stage('Static Code Analysis') {
             steps {
-                def scannerHome = tool 'SonarQube Scanner';
+
                 withSonarQubeEnv('SonarQube Server') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
