@@ -2,9 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Package the App') {
             steps {
                 sh 'sbt package'
+            }
+        }
+
+        stage('Testing with ScalaTest') {
+            steps {
+                sh 'sbt test'
             }
         }
     }
