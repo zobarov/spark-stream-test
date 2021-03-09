@@ -1,7 +1,8 @@
 pipeline {
     agent any
-    def scannerHome = tool 'SonarQube Scanner';
-
+    environment {
+        SCANNER_HOME = tool 'SonarQube Scanner';
+    }
     stages {
         stage('Package the App') {
             steps {
@@ -18,7 +19,7 @@ pipeline {
             steps {
 
                 withSonarQubeEnv('SonarQube Server') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${SCANNER_HOME}/bin/sonar-scanner"
                 }
             }
 
