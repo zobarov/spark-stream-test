@@ -14,10 +14,13 @@ pipeline {
             }
         }
         stage('Static Code Analysis') {
-          def scannerHome = tool 'SonarQube Scanner';
-          withSonarQubeEnv('SonarQube Server') {
-              sh "${scannerHome}/bin/sonar-scanner"
-          }
+            steps {
+                def scannerHome = tool 'SonarQube Scanner';
+                withSonarQubeEnv('SonarQube Server') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+
         }
     }
 }
