@@ -21,7 +21,7 @@ pipeline {
             steps {
 
                 withSonarQubeEnv('SonarQube Server') {
-                    sh "${SCANNER_HOME}/bin/sonar-scanner"
+                    sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.login=“admin” -Dsonar.login=“admin1”"
                 }
             }
 
